@@ -32,6 +32,19 @@ try {
     assert.ok(state.doc <= state.viewport + 2, 'Horizontal scroll at ' + width + ': ' + JSON.stringify(state))
     assert.ok(state.body <= state.viewport + 2, 'Body overflow at ' + width + ': ' + JSON.stringify(state))
     assert.ok(state.title > 0 && state.title <= state.viewport, 'Hero title overflow at ' + width)
+    const artwork = await page.locator('.cinema-scene-art').evaluate(image => ({
+      loaded: image.complete && image.naturalWidth > 0, width: image.naturalWidth
+    }))
+    assert.ok(artwork.loaded, '3D hero artwork failed to load at '+width)
+    assert.equal(await page.locator('.cinema-copy h1').count(),1)
+    assert.equal(await page.locator('.cinema-feature-art img').count(),1)
+    assert.ok(await page.locator('.cinema-feature-art img').evaluate(image => image.complete && image.naturalWidth>0),
+      'Dimensional orange section emblem failed at '+width)
+    const servicesBeforeCompany = await page.evaluate(() =>
+      document.querySelector('#services').compareDocumentPosition(document.querySelector('#about')) &
+      Node.DOCUMENT_POSITION_FOLLOWING)
+    assert.ok(servicesBeforeCompany, 'Services should follow hero before company section')
+
     if (width < 900) {
       assert.equal(state.nav, 'none', 'Desktop nav must be hidden at ' + width)
       assert.notEqual(state.menu, 'none', 'Hamburger must appear at ' + width)
