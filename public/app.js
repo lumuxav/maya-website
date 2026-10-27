@@ -47,7 +47,7 @@ document.documentElement.classList.add('js');
     revealNodes.forEach(node => observer.observe(node));
   }
   // Use locally hosted engineering illustrations if a remote photo cannot load.
-  $('img[data-fallback]').forEach(image => {
+  $$('img[data-fallback]').forEach(image => {
     image.addEventListener('error', () => {
       const fallback = image.dataset.fallback;
       if (!fallback || image.dataset.fallbackApplied === 'true') return;
