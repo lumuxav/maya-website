@@ -216,3 +216,12 @@ body{background:#0b0c0e;color:var(--premium-paper);overflow-x:clip}
 .cinema-feature-art .cinema-feature-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.15;mix-blend-mode:screen;pointer-events:none}
 @media(max-width:900px){.cinema-feature-art .cinema-feature-canvas{display:none!important}}
 @media(prefers-reduced-motion:reduce){.cinema-feature-art .cinema-feature-canvas{display:none!important}}
+
+/* Order access remains visible but no longer visually competes with the hero CTA. */
+.cinema-copy>.axis-whatsapp-order{display:inline-flex;align-items:center;gap:10px;margin-top:19px;
+ min-height:0;padding:3px 0;background:transparent;border:0;border-bottom:1px solid #ffffff60;
+ border-radius:0;color:#ddd;font:660 11px var(--body);letter-spacing:.015em;box-shadow:none;transform:none}
+.cinema-copy>.axis-whatsapp-order:hover{background:transparent;border-color:#ff7d53;color:#ffab87;transform:none}
+.cinema-copy>.axis-whatsapp-order>span{color:#fe7251;font-size:16px}
+.cinema-copy>.cinema-proof{margin-top:48px}
+@media(max-width:430px){.cinema-copy>.cinema-proof{margin-top:33px}}
