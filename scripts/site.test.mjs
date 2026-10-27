@@ -175,3 +175,40 @@ test('the cinematic site preserves real business capabilities and ordering',()=>
   assert.doesNotMatch(html,/ISO 9001|24\/7 Production|Established in 1989/);
   assert.match(html,/assets\/real\/metal-louvers\.webp/);
 });
+
+test('three editorial background photos come from Maya Steel Works supplied material images',async()=>{
+  const photos=await read('public/photo-sections.css');
+  assert.match(html,/href="\.\/photo-sections\.css"/);
+  const cases=[
+    ['about','metal-louvers.webp','maya-photo-about'],
+    ['process','workshop-steel-strips.webp','maya-photo-process'],
+    ['quote','sliding-channels.webp','maya-photo-quote'],
+  ];
+  for(const [section,filename,group] of cases){
+    assert.match(html,new RegExp('<section class="[^"]*maya-photo-section" id="'+section+'"'));
+    assert.match(html,new RegExp('class="maya-photo-stage '+group+'"'));
+    assert.match(html,new RegExp('<img src="\\.\\/assets\\/real\\/'+filename.replace(/\./g,'\\.')+'"'));
+    const asset=await readFile(new URL('../public/assets/real/'+filename,import.meta.url));
+    assert.equal(asset.toString('ascii',0,4),'RIFF',filename);
+    assert.equal(asset.toString('ascii',8,12),'WEBP',filename);
+    assert.ok((await stat(new URL('../dist/assets/real/'+filename,import.meta.url))).isFile());
+  }
+  assert.match(photos,/\.maya-photo-about/);
+  assert.match(photos,/\.maya-photo-process/);
+  assert.match(photos,/\.maya-photo-quote/);
+  assert.match(photos,/@media\(max-width:700px\)/);
+  assert.match(photos,/@media\(prefers-reduced-motion:reduce\)/);
+  assert.match(photos,/pointer-events:none/);
+  assert.ok((await stat(new URL('../dist/photo-sections.css',import.meta.url))).isFile());
+});
+
+test('photo treatment does not replace the site ordering or real work gallery',async()=>{
+  assert.equal((html.match(/class="service-card reveal"/g)||[]).length,6);
+  assert.equal((html.match(/class="gallery-item reveal"/g)||[]).length,6);
+  assert.match(html,/class="maya-feature-panel"/);
+  assert.match(html,/id="quote-form"/);
+  assert.match(html,/wa\.me\/256757742177/);
+  const motion=await read('public/motion-effects.js');
+  assert.match(motion,/document\.querySelectorAll\('\.maya-photo-section'\)/);
+  assert.match(motion,/const photo = section\.querySelector\('\.maya-photo-stage img'\)/);
+});

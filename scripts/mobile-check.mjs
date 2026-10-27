@@ -45,6 +45,27 @@ try {
       return image && image.complete && image.naturalWidth > 0
     }, null, { timeout: 10000 })
     assert.equal(await page.locator('.maya-feature-panel img').getAttribute('src'),'./assets/real/cnc-pattern-panel.webp')
+    for (const [section, filename] of [
+      ['about','metal-louvers.webp'],
+      ['process','workshop-steel-strips.webp'],
+      ['quote','sliding-channels.webp'],
+    ]) {
+      const backdrop = page.locator('#'+section+' .maya-photo-stage img')
+      await backdrop.scrollIntoViewIfNeeded()
+      await page.waitForFunction((sectionId) => {
+        const image = document.querySelector('#'+sectionId+' .maya-photo-stage img')
+        return image && image.complete && image.naturalWidth > 0
+      }, section, { timeout: 10000 })
+      assert.match(await backdrop.getAttribute('src'), new RegExp(filename.replace('.', '\\.')))
+      const layout = await page.locator('#'+section).evaluate(el => ({
+        width:el.getBoundingClientRect().width,
+        photo:getComputedStyle(el.querySelector('.maya-photo-stage')).position,
+        overlay:getComputedStyle(el.querySelector('.maya-photo-stage'),'::after').backgroundImage,
+      }))
+      assert.ok(layout.width <= width + 2, 'Photo section overflow: '+section+' at '+width)
+      assert.equal(layout.photo, 'absolute', section+' image should not push content')
+      assert.notEqual(layout.overlay, 'none', section+' background needs text contrast overlay')
+    }
     const servicesBeforeCompany = await page.evaluate(() =>
       document.querySelector('#services').compareDocumentPosition(document.querySelector('#about')) &
       Node.DOCUMENT_POSITION_FOLLOWING)
