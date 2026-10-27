@@ -66,7 +66,7 @@ test('built files are ready for static hosting', async () => {
 
 test('the site uses actual company photos, correct monogram and dark orange theme',async()=>{
   const axis=await read('public/axis.css');
-  assert.match(html,/class="hero hero-v2 axis-hero"/);
+  assert.match(html,/class="hero hero-v2 axis-hero cinema-hero"/);
   assert.match(html,/href="\.\/axis\.css"/);
   assert.match(html,/id="feature-heading"/);
   assert.match(axis,/axis-feature/);
@@ -137,4 +137,35 @@ test('motion libraries are progressive, touch-safe and respect reduced motion',a
   assert.match(motion,/dataSaver/);
   assert.match(css,/axis-three-canvas\{display:none!important/);
   assert.ok((await stat(new URL('../dist/motion-effects.js',import.meta.url))).isFile());
+});
+
+test('cinematic steel render is bundled and the capability section leads the page',async()=>{
+  const premium=await read('public/premium.css');
+  const art=await readFile(new URL('../public/assets/maya-industrial-3d-hero.webp',import.meta.url));
+  assert.equal(art.toString('ascii',0,4),'RIFF','Missing original cinematic hero WebP');
+  assert.equal(art.toString('ascii',8,12),'WEBP');
+  assert.match(html,/src="\.\/assets\/maya-industrial-3d-hero\.webp"/);
+  assert.match(html,/CONCEPTUAL STEEL VISUAL/,'3D render must not be mistaken for a project photograph');
+  assert.match(html,/metal-star-emblem\.svg/);
+  assert.match(html,/class="cinema-feature-canvas"/);
+  assert.ok(html.indexOf('id="services"')<html.indexOf('id="about"'),'Capabilities should immediately follow hero');
+  assert.ok(html.indexOf('id="services"')<html.indexOf('id="feature-heading"'),'Orange feature section should follow services');
+  assert.equal((html.match(/class="service-card reveal"/g)||[]).length,6);
+  assert.equal((html.match(/class="axis-service-order"/g)||[]).length,6);
+  assert.match(premium,/\.cinema-scene-art/);
+  assert.match(premium,/\.cinema-copy h1/);
+  assert.match(premium,/@media\(max-width:700px\)/);
+  assert.ok((await stat(new URL('../dist/assets/maya-industrial-3d-hero.webp',import.meta.url))).isFile());
+  assert.ok((await stat(new URL('../dist/assets/metal-star-emblem.svg',import.meta.url))).isFile());
+  assert.ok((await stat(new URL('../dist/premium.css',import.meta.url))).isFile());
+});
+
+test('the cinematic site preserves real business capabilities and ordering',()=>{
+  assert.match(html,/Pressed Ribbed Plates/);
+  assert.match(html,/Roller Shutter Channels/);
+  assert.match(html,/Plasma CNC Designs/);
+  assert.match(html,/wa\.me\/256757742177/);
+  assert.match(html,/id="quote-form"/);
+  assert.doesNotMatch(html,/ISO 9001|24\/7 Production|Established in 1989/);
+  assert.match(html,/assets\/real\/metal-louvers\.webp/);
 });
