@@ -63,3 +63,23 @@ test('built files are ready for static hosting', async () => {
   assert.equal(config.outputDirectory,'dist');
   assert.equal(config.buildCommand,'npm run build');
 });
+
+test('premium redesign and local photo fallbacks are included in the production build',async()=>{
+  const refresh=await read('public/refresh.css');
+  assert.match(html,/href="\.\/refresh\.css"/);
+  assert.match(html,/class="hero hero-v2"/);
+  assert.match(html,/METALWORK/);
+  assert.match(refresh,/hero-v2-grid/);
+  assert.match(refresh,/prefers-reduced-motion/);
+  assert.match(refresh,/max-width:700px/);
+  assert.match(js,/fallbackApplied/);
+  const imageNames=['ribbed-plates','roller-channels','kibaati-strips','louvers','sliding-channels','cnc-plasma'];
+  for(const name of imageNames){
+    const file='assets/'+name+'.svg';
+    const image=await read('public/'+file);
+    assert.match(image,/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+    assert.match(html,new RegExp('data-fallback="\\.\\/assets\\/'+name+'\\.svg"'));
+    assert.ok((await stat(new URL('../dist/'+file,import.meta.url))).isFile());
+  }
+  assert.ok((await stat(new URL('../dist/refresh.css',import.meta.url))).isFile());
+});
