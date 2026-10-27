@@ -10,22 +10,23 @@ const ScrollTrigger = window.ScrollTrigger;
 if (!reduced.matches && !dataSaver) {
   if (gsap && ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
-    const fast = { duration: 0.85, ease: 'power3.out' };
-    gsap.fromTo('.axis-hero h1', { autoAlpha: 0.15, y: 35 }, { autoAlpha: 1, y: 0, delay: 0.12, ...fast });
-    gsap.fromTo('.axis-hero-lead', { autoAlpha: 0.2, y: 17 }, { autoAlpha: 1, y: 0, delay: 0.27, duration: .78, ease: 'power2.out' });
-    gsap.fromTo('.axis-hero-actions', { autoAlpha: 0.2, y: 15 }, { autoAlpha: 1, y: 0, delay: 0.4, duration: .75, ease: 'power2.out' });
-    gsap.fromTo('.axis-proof', { autoAlpha: 0.3 }, { autoAlpha: 1, delay: .65, duration: 1 });
-    const sections = document.querySelectorAll('.axis-material-frame, .service-card, .process-step, .gallery-item, .contact-card');
+    const fast = { duration: .93, ease: 'power3.out' };
+    gsap.fromTo('.cinema-eyebrow', { autoAlpha: .25, x: -12 }, { autoAlpha: 1, x: 0, duration: .65, ease: 'power2.out' });
+    gsap.fromTo('.cinema-copy h1', { autoAlpha: 0.2, y: 38 }, { autoAlpha: 1, y: 0, delay: 0.13, ...fast });
+    gsap.fromTo('.cinema-lead', { autoAlpha: .25, y: 20 }, { autoAlpha: 1, y: 0, delay: .3, duration: .78, ease: 'power2.out' });
+    gsap.fromTo('.cinema-actions', { autoAlpha: .2, y: 15 }, { autoAlpha: 1, y: 0, delay: .46, duration: .75, ease: 'power2.out' });
+    gsap.fromTo('.cinema-proof', { autoAlpha: .3 }, { autoAlpha: 1, delay: .65, duration: 1 });
+    const sections = document.querySelectorAll('.axis-material-frame, .service-card, .process-step, .gallery-item, .contact-card, .intro-content');
     sections.forEach((node, index) => {
       gsap.fromTo(node,
-        { opacity: .65, y: 28 },
-        { opacity: 1, y: 0, duration: .8, delay: (index % 3) * .09, ease: 'power2.out',
+        { opacity: .78, y: 22 },
+        { opacity: 1, y: 0, duration: .8, delay: (index % 3) * .1, ease: 'power2.out',
           scrollTrigger: { trigger: node, start: 'top 94%', once: true } });
     });
     if (desktop.matches) {
-      gsap.to('.axis-hero-visual>img', {
-        yPercent: 5, ease: 'none',
-        scrollTrigger: { trigger: '.axis-hero', start: 'top top', end: 'bottom top', scrub: .8 },
+      gsap.to('.cinema-scene-art', {
+        yPercent: 5, scale: 1.05, ease: 'none',
+        scrollTrigger: { trigger: '.cinema-hero', start: 'top top', end: 'bottom top', scrub: .85 },
       });
       gsap.to('.axis-feature-image img', {
         y: -28, rotation: -8, ease: 'none',
@@ -49,7 +50,7 @@ if (!reduced.matches && !dataSaver) {
   // taps without requiring a React framework migration.
   import('https://cdn.jsdelivr.net/npm/motion@12.23.24/+esm')
     .then(({ animate }) => {
-      document.querySelectorAll('.axis-whatsapp-order, .axis-service-order, .button-accent, .nav-cta, .service-button')
+      document.querySelectorAll('.axis-whatsapp-order, .axis-service-order, .cinema-button, .button-accent, .nav-cta, .service-button')
         .forEach(element => {
           element.addEventListener('pointerdown', () => animate(element, { scale: [.98, 1] }, { duration: .28 }), { passive: true });
         });
@@ -59,7 +60,7 @@ if (!reduced.matches && !dataSaver) {
   // full-page animation scheduler.
   import('https://cdn.jsdelivr.net/npm/animejs@4.5.0/+esm')
     .then(({ animate }) => {
-      const dot = document.querySelector('.axis-dot');
+      const dot = document.querySelector('.cinema-ember');
       if (dot) animate(dot, { opacity: [.55, 1], scale: [1, 1.25],
         duration: 1600, alternate: true, loop: true, ease: 'inOutSine' });
     }).catch(() => {});
@@ -67,8 +68,8 @@ if (!reduced.matches && !dataSaver) {
   // A small, optional 3D precision-rings accent, desktop-only. No WebGL
   // work is loaded on phones, touch devices, reduced-motion or data saver.
   if (desktop.matches && finePointer.matches) {
-    const canvas = document.querySelector('.axis-three-canvas');
-    const container = document.querySelector('.axis-hero-visual');
+    const canvas = document.querySelector('.cinema-feature-canvas');
+    const container = document.querySelector('.cinema-feature-art');
     if (canvas && container) {
       import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js')
         .then(THREE => {
