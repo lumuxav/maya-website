@@ -1,0 +1,143 @@
+/* Photo-led sections for Maya Steel Works.
+   All three images originate from company-supplied product photography,
+   with nondestructive framing and tonal treatment in CSS. */
+
+/* A photographic backdrop belongs behind content: never intercept links,
+   focus, touch or WhatsApp interactions. */
+.maya-photo-section{position:relative;isolation:isolate;overflow:hidden}
+.maya-photo-section > .container{position:relative;z-index:2}
+.maya-photo-stage{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.maya-photo-stage img{position:absolute;display:block;width:100%;height:100%;object-fit:cover;
+ filter:contrast(1.13) saturate(.66) brightness(.83);will-change:transform;
+ transform:scale(1.04);transition:transform 1.2s ease}
+.maya-photo-stage:after{position:absolute;content:"";inset:0;pointer-events:none}
+.maya-photo-section::before{pointer-events:none}
+
+/* COMPANY / ABOUT. Louvers supply strong diagonal detail and real material texture.
+   A deep left-to-right fade leaves the entire copy area safely legible. */
+.intro.maya-photo-section{min-height:480px;background:#111519;padding:clamp(92px,8vw,136px) 0}
+.maya-photo-about{left:38%;right:0}
+.maya-photo-about img{object-position:51% 51%;filter:grayscale(.18) brightness(.64) contrast(1.15) saturate(.75)}
+.maya-photo-about:after{background:
+ linear-gradient(90deg,#101316 0%,#101316f5 17%,#10131692 49%,#10131612 91%),
+ linear-gradient(0deg,#111416ee 0%,transparent 31%,#0d0f1266 100%);
+}
+.intro.maya-photo-section:after{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;
+ background:radial-gradient(ellipse at 88% 21%,#ed78412a,transparent 35%),
+ linear-gradient(90deg,#111416 0%,#111416c7 45%,transparent 80%)}
+.intro.maya-photo-section .intro-grid{grid-template-columns:19% minmax(0,1fr);align-items:start}
+.intro.maya-photo-section .intro-content{max-width:760px;padding-right:32px}
+.intro.maya-photo-section .intro-content .heading{max-width:720px;
+ text-shadow:0 3px 20px #090b0c91}
+.intro.maya-photo-section .intro-bottom{max-width:650px}
+.intro.maya-photo-section .intro-bottom p{color:#d0d2d1;max-width:535px}
+.intro.maya-photo-section .intro-precision-art{display:none}
+.intro.maya-photo-section .mini-label{color:#ff9672}
+.intro.maya-photo-section .section-tag{color:#dbdcdb}
+.maya-photo-about .maya-photo-ruler{position:absolute;top:12%;right:8%;width:20%;height:46%;
+ border-top:1px solid #f4e3d370;border-right:1px solid #f4e3d370;opacity:.65;z-index:1}
+.maya-photo-about .maya-photo-ruler:after{content:"";position:absolute;top:-4px;right:-4px;
+ width:7px;height:7px;background:#ff754f;border-radius:50%}
+
+/* HOW IT WORKS. The actual steel-strip photo gives a fabrication atmosphere,
+   while the process cards remain distinctly readable above the image. */
+.process.maya-photo-section{background:#0c0f13;padding:clamp(90px,9vw,142px) 0}
+.maya-photo-process img{object-position:56% 44%;filter:contrast(1.2) saturate(.53) brightness(.65)}
+.maya-photo-process:after{background:
+ linear-gradient(90deg,#0c1015f2 0%,#0c1015d7 34%,#0c10159c 70%,#0c1015ca 100%),
+ linear-gradient(0deg,#0c1015ee 0%,transparent 52%,#0c1015a8 100%)}
+.process.maya-photo-section .section-head{position:relative;margin-bottom:44px}
+.process.maya-photo-section .section-head .heading{max-width:750px;
+ text-shadow:0 2px 24px #0008}
+.process.maya-photo-section .section-head>p{color:#d4d5d5;max-width:400px}
+.process.maya-photo-section .section-tag{color:#ff9978}
+.process.maya-photo-section .process-grid{gap:13px}
+.process.maya-photo-section .process-step,
+.process.maya-photo-section .process-step:last-child{position:relative;background:#13171bcc;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+ border:1px solid #f7f7f733;min-height:285px;box-shadow:0 21px 50px #0004;
+ transition:border-color .3s,transform .3s,background .3s}
+.process.maya-photo-section .process-step:before{content:"";position:absolute;top:0;left:0;
+ width:53px;height:2px;background:#ff714f}
+.process.maya-photo-section .process-step:hover{border-color:#ff805665;
+ background:#1f2427e8;transform:translateY(-4px)}
+.process.maya-photo-section .process-step h3{color:#fff;letter-spacing:-.045em}
+.process.maya-photo-section .process-step p{color:#ccd0d0}
+
+/* QUOTE. Sliding profiles remain a photographic, relevant backdrop rather than
+   a generic workshop or stock image. The enquiry form is never translucent. */
+.quote-section.maya-photo-section{background:#0e1014;padding:clamp(90px,9vw,140px) 0}
+.maya-photo-quote img{left:0;width:70%;object-position:48% 50%;
+ filter:contrast(1.2) saturate(.7) brightness(.57)}
+.maya-photo-quote:after{background:
+ linear-gradient(90deg,#101318cf 0%,#1013189c 32%,#101318e8 64%,#101318 94%),
+ linear-gradient(0deg,#101318ec 0%,transparent 34%,#101318a8 100%)}
+.quote-section.maya-photo-section .quote-layout{position:relative;z-index:2;gap:clamp(35px,4.5vw,86px)}
+.quote-section.maya-photo-section .quote-info{position:relative}
+.quote-section.maya-photo-section .quote-info .heading{max-width:570px;color:#f6f6f4;text-shadow:0 3px 24px #000a}
+.quote-section.maya-photo-section .quote-info>p{max-width:510px;color:#d0d2d3}
+.quote-section.maya-photo-section .quote-prompt{background:#12171bbd;backdrop-filter:blur(8px);
+ border:1px solid #ffffff42;border-radius:9px;padding:16px;max-width:500px}
+.quote-section.maya-photo-section .quote-prompt small{color:#c0c5c5}
+.quote-section.maya-photo-section .quote-form{position:relative;z-index:3;
+ background:#191c20f5;border:1px solid #6e747675;box-shadow:0 32px 88px #010304bb;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.quote-section.maya-photo-section .quote-form .field input,
+.quote-section.maya-photo-section .quote-form .field select,
+.quote-section.maya-photo-section .quote-form .field textarea{background:#101317;border-color:#51575a}
+
+/* The rest of the site remains dark, uncluttered and true to its existing theme. */
+@media(max-width:1100px){
+ .intro.maya-photo-section .intro-content{max-width:690px;padding-right:0}
+ .maya-photo-about{left:42%}
+ .process.maya-photo-section .process-step{min-height:270px}
+ .maya-photo-quote img{width:85%}
+}
+@media(max-width:900px){
+ .intro.maya-photo-section{min-height:0}
+ .intro.maya-photo-section .intro-grid{grid-template-columns:16% minmax(0,1fr)}
+ .maya-photo-about{left:30%}
+ .maya-photo-about:after{background:linear-gradient(90deg,#101316ed 0%,#101316db 33%,#10131675 73%,#10131658 100%),
+ linear-gradient(0deg,#101316 0%,transparent 38%,#10131675 100%)}
+ .process.maya-photo-section .process-step,.process.maya-photo-section .process-step:last-child{min-height:235px}
+ .quote-section.maya-photo-section .quote-layout{gap:34px}
+ .maya-photo-quote img{width:100%;filter:contrast(1.17) saturate(.68) brightness(.5)}
+ .maya-photo-quote:after{background:linear-gradient(90deg,#101318db,#101318e8 66%,#101318ef),
+ linear-gradient(0deg,#101318f1,transparent 55%,#101318c9)}
+}
+@media(max-width:700px){
+ .intro.maya-photo-section{padding:86px 0 82px}
+ .intro.maya-photo-section .intro-grid{display:block}
+ .intro.maya-photo-section .intro-content{max-width:100%;padding-right:0}
+ .intro.maya-photo-section .intro-content .heading{max-width:100%}
+ .intro.maya-photo-section .intro-bottom p{max-width:100%}
+ .maya-photo-about{left:0;right:0}
+ .maya-photo-about img{object-position:68% center;filter:saturate(.47) brightness(.51) contrast(1.13)}
+ .maya-photo-about:after{background:linear-gradient(90deg,#101316f2,#101316bd 70%,#101316a3),
+ linear-gradient(0deg,#101316ef 0%,transparent 40%,#1013169c)}
+ .intro.maya-photo-section:after{background:linear-gradient(90deg,#111416db,#111416a8)}
+ .maya-photo-about .maya-photo-ruler{display:none}
+ .process.maya-photo-section{padding:79px 0}
+ .maya-photo-process img{object-position:66% center;filter:brightness(.51) saturate(.54) contrast(1.17)}
+ .maya-photo-process:after{background:linear-gradient(0deg,#0c1015f8 0%,#0c1015dc 45%,#0c1015ad 100%)}
+ .process.maya-photo-section .section-head>p{color:#d6dbdb}
+ .process.maya-photo-section .process-grid{gap:12px}
+ .process.maya-photo-section .process-step,.process.maya-photo-section .process-step:last-child{min-height:0;
+ background:#11171ce8;padding:25px!important;border-color:#ffffff3c}
+ .process.maya-photo-section .process-step:hover{transform:none}
+ .quote-section.maya-photo-section{padding:81px 0 90px}
+ .maya-photo-quote img{inset:0;width:100%;height:100%;object-position:60% center;
+ filter:brightness(.5) saturate(.53)}
+ .maya-photo-quote:after{background:linear-gradient(0deg,#101318fb,#101318d4 48%,#101318d1)}
+ .quote-section.maya-photo-section .quote-form{background:#191c20f9}
+ .quote-section.maya-photo-section .quote-prompt{background:#15191ed9}
+}
+@media(max-width:410px){
+ .intro.maya-photo-section .heading{font-size:clamp(39px,10.4vw,48px)}
+ .process.maya-photo-section .section-head .heading{font-size:clamp(39px,10vw,48px)}
+ .quote-section.maya-photo-section .quote-layout{gap:25px}
+}
+@media(prefers-reduced-motion:reduce){
+ .maya-photo-stage img{will-change:auto;transform:none!important;transition:none!important}
+ .process.maya-photo-section .process-step:hover{transform:none}
+}
