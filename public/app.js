@@ -46,12 +46,15 @@ document.documentElement.classList.add('js');
     }, { threshold: 0.08, rootMargin: '0px 0px 50px 0px' });
     revealNodes.forEach(node => observer.observe(node));
   }
-  // Hide inaccessible image cards on a photo CDN failure instead of leaving broken icons.
-  $$('.gallery-item img').forEach(image => {
+  // Use locally hosted engineering illustrations if a remote photo cannot load.
+  $('img[data-fallback]').forEach(image => {
     image.addEventListener('error', () => {
-      const item = image.closest('.gallery-item');
-      if (item) item.classList.add('image-unavailable');
-      image.style.opacity = '0';
+      const fallback = image.dataset.fallback;
+      if (!fallback || image.dataset.fallbackApplied === 'true') return;
+      image.dataset.fallbackApplied = 'true';
+      image.src = fallback;
+      const card = image.closest('.gallery-item');
+      if (card) card.dataset.img = fallback;
     });
   });
   const filters = $$('.filter');
