@@ -64,22 +64,38 @@ test('built files are ready for static hosting', async () => {
   assert.equal(config.buildCommand,'npm run build');
 });
 
-test('premium redesign and local photo fallbacks are included in the production build',async()=>{
-  const refresh=await read('public/refresh.css');
-  assert.match(html,/href="\.\/refresh\.css"/);
-  assert.match(html,/class="hero hero-v2"/);
-  assert.match(html,/METALWORK/);
-  assert.match(refresh,/hero-v2-grid/);
-  assert.match(refresh,/prefers-reduced-motion/);
-  assert.match(refresh,/max-width:700px/);
-  assert.match(js,/fallbackApplied/);
-  const imageNames=['ribbed-plates','roller-channels','kibaati-strips','louvers','sliding-channels','cnc-plasma'];
-  for(const name of imageNames){
-    const file='assets/'+name+'.svg';
-    const image=await read('public/'+file);
-    assert.match(image,/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
-    assert.match(html,new RegExp('data-fallback="\\.\\/assets\\/'+name+'\\.svg"'));
-    assert.ok((await stat(new URL('../dist/'+file,import.meta.url))).isFile());
+test('the site uses actual company photos, correct monogram and dark orange theme',async()=>{
+  const axis=await read('public/axis.css');
+  assert.match(html,/class="hero hero-v2 axis-hero"/);
+  assert.match(html,/href="\.\/axis\.css"/);
+  assert.match(html,/id="feature-heading"/);
+  assert.match(axis,/axis-feature/);
+  assert.match(axis,/axis-material-notes/);
+  assert.match(axis,/max-width:700px/);
+  assert.match(axis,/prefers-reduced-motion/);
+  const names=['ribbed-steel-plates','roller-shutter-channels','workshop-steel-strips',
+    'metal-louvers','sliding-channels','cnc-pattern-panel','cnc-lettering','profile-structure'];
+  for(const name of names){
+    const file='assets/real/'+name+'.webp';
+    const binary=await readFile(new URL('../public/'+file,import.meta.url));
+    assert.equal(binary.toString('ascii',0,4),'RIFF','Invalid WebP photo: '+file);
+    assert.equal(binary.toString('ascii',8,12),'WEBP','Invalid WebP photo: '+file);
+    assert.ok((await stat(new URL('../dist/'+file,import.meta.url))).isFile(),'Missing '+file);
+    assert.ok(html.includes('./assets/real/'+name+'.webp'),'Photo absent from page: '+name);
   }
-  assert.ok((await stat(new URL('../dist/refresh.css',import.meta.url))).isFile());
+  const logo=await read('public/assets/maya-steel-logo.svg');
+  assert.match(logo,/Maya Steel Works/);
+  assert.match(html,/\.\/assets\/maya-steel-logo\.svg/);
+  assert.ok((await stat(new URL('../dist/assets/maya-steel-logo.svg',import.meta.url))).isFile());
+  assert.ok((await stat(new URL('../dist/axis.css',import.meta.url))).isFile());
+  assert.doesNotMatch(html,/images\.unsplash\.com/);
+  assert.doesNotMatch(html,/assets\/real\/[\w-]+\.svg/);
+});
+
+test('all brochure services and accurate claims remain',()=>{
+  assert.match(html,/Prices negotiable/);
+  assert.match(html,/Maya.*Wakiso/);
+  assert.doesNotMatch(html,/ISO 9001|24\/7 Production|Projects Completed|Years Experience/i);
+  assert.match(html,/data-service="Plasma CNC Designs"/);
+  assert.match(html,/id="quote-form"/);
 });
