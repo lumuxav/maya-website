@@ -28,9 +28,13 @@ if (!reduced.matches && !dataSaver) {
         yPercent: 5, scale: 1.05, ease: 'none',
         scrollTrigger: { trigger: '.cinema-hero', start: 'top top', end: 'bottom top', scrub: .85 },
       });
-      gsap.to('.axis-feature-image img', {
-        y: -28, rotation: -8, ease: 'none',
-        scrollTrigger: { trigger: '.axis-feature', start: 'top bottom', end: 'bottom top', scrub: .7 },
+      gsap.to('.maya-feature-panel', {
+        y: -18, rotation: -5, ease: 'none',
+        scrollTrigger: { trigger: '.axis-feature', start: 'top bottom', end: 'bottom top', scrub: .6 },
+      });
+      gsap.to('.maya-feature-cutout', {
+        y: 15, rotation: 10, ease: 'none',
+        scrollTrigger: { trigger: '.axis-feature', start: 'top bottom', end: 'bottom top', scrub: .8 },
       });
     }
     // Do not hijack mobile gestures or scrolling. Lenis is desktop-only.
@@ -65,66 +69,7 @@ if (!reduced.matches && !dataSaver) {
         duration: 1600, alternate: true, loop: true, ease: 'inOutSine' });
     }).catch(() => {});
 
-  // A small, optional 3D precision-rings accent, desktop-only. No WebGL
-  // work is loaded on phones, touch devices, reduced-motion or data saver.
-  if (desktop.matches && finePointer.matches) {
-    const canvas = document.querySelector('.cinema-feature-canvas');
-    const container = document.querySelector('.cinema-feature-art');
-    if (canvas && container) {
-      import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js')
-        .then(THREE => {
-          let renderer;
-          try {
-            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
-          } catch (_) { return; }
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
-          const scene = new THREE.Scene();
-          const camera = new THREE.PerspectiveCamera(45, 1, .1, 100);
-          camera.position.z = 5;
-          const rings = new THREE.Group();
-          for (let i = 0; i < 3; i++) {
-            const geometry = new THREE.TorusGeometry(1.05 + i * .21, .009, 6, 94);
-            const material = new THREE.MeshBasicMaterial({ color: i % 2 ? 0xbfc9cc : 0xfb6744,
-              transparent: true, opacity: .23 - i * .035, depthWrite: false });
-            const ring = new THREE.Mesh(geometry, material);
-            ring.rotation.set(.25 + i * .38, .2 + i * .5, .1 + i * .2);
-            rings.add(ring);
-          }
-          scene.add(rings);
-          const resize = () => {
-            const width = Math.max(1, container.clientWidth), height = Math.max(1, container.clientHeight);
-            renderer.setSize(width, height, false);
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-          };
-          resize();
-          const ro = new ResizeObserver(resize);
-          ro.observe(container);
-          let visible = true, frame = 0, tick = 0;
-          const draw = () => {
-            frame = 0;
-            if (!visible || document.hidden || reduced.matches || !desktop.matches) return;
-            rings.rotation.x += .0006; rings.rotation.y += .001;
-            renderer.render(scene, camera);
-            if (++tick % 2 === 0) frame = requestAnimationFrame(draw);
-            else frame = requestAnimationFrame(draw);
-          };
-          const io = new IntersectionObserver(entries => {
-            visible = entries[0]?.isIntersecting ?? false;
-            if (visible && !frame) frame = requestAnimationFrame(draw);
-            else if (!visible && frame) { cancelAnimationFrame(frame); frame = 0; }
-          }, { threshold: .01 });
-          io.observe(container);
-          document.addEventListener('visibilitychange', () => { if (!document.hidden && visible && !frame) frame = requestAnimationFrame(draw); });
-          reduced.addEventListener?.('change', () => {
-            if (reduced.matches) { if (frame) cancelAnimationFrame(frame); frame = 0; renderer.clear(); }
-          });
-          desktop.addEventListener?.('change', () => {
-            if (!desktop.matches) { if (frame) cancelAnimationFrame(frame); frame = 0; renderer.clear(); }
-            else { resize(); if (visible && !frame) frame = requestAnimationFrame(draw); }
-          });
-          window.addEventListener('pagehide', () => { if (frame) cancelAnimationFrame(frame); io.disconnect(); ro.disconnect(); renderer.dispose(); }, { once: true });
-        }).catch(() => { /* WebGL is optional; the photo remains the hero. */ });
-    }
-  }
+  // Actual workshop photographs receive only lightweight GSAP movement.
+  // No synthetic 3D objects are rendered in the site artwork.
+
 }
