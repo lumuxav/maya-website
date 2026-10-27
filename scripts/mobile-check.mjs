@@ -35,14 +35,16 @@ try {
     const artwork = await page.locator('.cinema-scene-art').evaluate(image => ({
       loaded: image.complete && image.naturalWidth > 0, width: image.naturalWidth
     }))
-    assert.ok(artwork.loaded, '3D hero artwork failed to load at '+width)
+    assert.ok(artwork.loaded, 'Original Maya metalwork hero photo failed to load at '+width)
     assert.equal(await page.locator('.cinema-copy h1').count(),1)
-    assert.equal(await page.locator('.cinema-feature-art img').count(),1)
-    await page.locator('.cinema-feature-art img').scrollIntoViewIfNeeded()
+    assert.equal(await page.locator('.cinema-scene-art').getAttribute('src'),'./assets/real/roller-shutter-channels.webp')
+    assert.equal(await page.locator('.cinema-feature-art img').count(),2)
+    await page.locator('.maya-feature-panel img').scrollIntoViewIfNeeded()
     await page.waitForFunction(() => {
-      const image = document.querySelector('.cinema-feature-art img')
+      const image = document.querySelector('.maya-feature-panel img')
       return image && image.complete && image.naturalWidth > 0
     }, null, { timeout: 10000 })
+    assert.equal(await page.locator('.maya-feature-panel img').getAttribute('src'),'./assets/real/cnc-pattern-panel.webp')
     const servicesBeforeCompany = await page.evaluate(() =>
       document.querySelector('#services').compareDocumentPosition(document.querySelector('#about')) &
       Node.DOCUMENT_POSITION_FOLLOWING)

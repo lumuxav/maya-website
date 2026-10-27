@@ -131,7 +131,7 @@ test('motion libraries are progressive, touch-safe and respect reduced motion',a
   assert.match(motion,/gsap\.registerPlugin\(ScrollTrigger\)/);
   assert.match(motion,/import\('https:\/\/cdn\.jsdelivr\.net\/npm\/motion@/);
   assert.match(motion,/import\('https:\/\/cdn\.jsdelivr\.net\/npm\/animejs@/);
-  assert.match(motion,/three@0\.180\.0/);
+  assert.doesNotMatch(motion,/new THREE\\.WebGLRenderer|three@0\\.180\\.0/);
   assert.match(motion,/desktop\.matches && finePointer\.matches/);
   assert.match(motion,/prefers-reduced-motion: reduce/);
   assert.match(motion,/dataSaver/);
@@ -139,25 +139,31 @@ test('motion libraries are progressive, touch-safe and respect reduced motion',a
   assert.ok((await stat(new URL('../dist/motion-effects.js',import.meta.url))).isFile());
 });
 
-test('cinematic steel render is bundled and the capability section leads the page',async()=>{
+test('hero and project showcase use Maya Steel Works actual uploaded photos',async()=>{
   const premium=await read('public/premium.css');
-  const art=await readFile(new URL('../public/assets/maya-industrial-3d-hero.webp',import.meta.url));
-  assert.equal(art.toString('ascii',0,4),'RIFF','Missing original cinematic hero WebP');
-  assert.equal(art.toString('ascii',8,12),'WEBP');
-  assert.match(html,/src="\.\/assets\/maya-industrial-3d-hero\.webp"/);
-  assert.match(html,/CONCEPTUAL STEEL VISUAL/,'3D render must not be mistaken for a project photograph');
-  assert.match(html,/metal-star-emblem\.svg/);
-  assert.match(html,/class="cinema-feature-canvas"/);
-  assert.ok(html.indexOf('id="services"')<html.indexOf('id="about"'),'Capabilities should immediately follow hero');
-  assert.ok(html.indexOf('id="services"')<html.indexOf('id="feature-heading"'),'Orange feature section should follow services');
+  assert.match(html,/src="\.\/assets\/real\/roller-shutter-channels\.webp"/);
+  assert.match(html,/class="cinema-scene-art"/);
+  assert.match(html,/class="maya-hero-sample"/);
+  assert.match(html,/src="\.\/assets\/real\/workshop-steel-strips\.webp"/);
+  assert.match(html,/ACTUAL STEEL PROFILES/);
+  assert.match(html,/class="maya-feature-panel"/);
+  assert.match(html,/src="\.\/assets\/real\/cnc-pattern-panel\.webp"/);
+  assert.match(html,/src="\.\/assets\/real\/cnc-lettering\.webp"/);
+  assert.match(html,/Real company material photo/);
+  assert.doesNotMatch(html,/maya-industrial-3d-hero|metal-star-emblem|CONCEPTUAL STEEL VISUAL|cinema-feature-canvas/);
+  assert.ok(html.indexOf('id="services"')<html.indexOf('id="about"'),'Capabilities follow hero');
+  assert.ok(html.indexOf('id="services"')<html.indexOf('id="feature-heading"'),'Orange feature follows services');
   assert.equal((html.match(/class="service-card reveal"/g)||[]).length,6);
   assert.equal((html.match(/class="axis-service-order"/g)||[]).length,6);
-  assert.match(premium,/\.cinema-scene-art/);
-  assert.match(premium,/\.cinema-copy h1/);
+  assert.match(premium,/\.maya-real-hero/);
+  assert.match(premium,/\.maya-feature-panel/);
   assert.match(premium,/@media\(max-width:700px\)/);
-  assert.ok((await stat(new URL('../dist/assets/maya-industrial-3d-hero.webp',import.meta.url))).isFile());
-  assert.ok((await stat(new URL('../dist/assets/metal-star-emblem.svg',import.meta.url))).isFile());
-  assert.ok((await stat(new URL('../dist/premium.css',import.meta.url))).isFile());
+  for (const asset of ['roller-shutter-channels.webp','workshop-steel-strips.webp','cnc-pattern-panel.webp','cnc-lettering.webp']) {
+    const original=await readFile(new URL('../public/assets/real/'+asset,import.meta.url));
+    assert.equal(original.toString('ascii',0,4),'RIFF',asset+' invalid');
+    assert.equal(original.toString('ascii',8,12),'WEBP',asset+' invalid');
+    assert.ok((await stat(new URL('../dist/assets/real/'+asset,import.meta.url))).isFile());
+  }
 });
 
 test('the cinematic site preserves real business capabilities and ordering',()=>{
