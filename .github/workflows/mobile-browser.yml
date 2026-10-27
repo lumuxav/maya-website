@@ -1,0 +1,40 @@
+name: Check Maya Mobile Browser
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  chromium-responsive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Use preinstalled Chrome with Playwright
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.56.1
+          google-chrome --version
+      - name: Start static site
+        run: |
+          npm run dev > /tmp/maya-server.log 2>&1 &
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/maya-server.log
+          exit 1
+      - name: Validate phone and desktop behavior in Chromium
+        run: node scripts/mobile-check.mjs
+      - name: Save screenshots for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maya-browser-layouts
+          path: test-screenshots/*.png
+          if-no-files-found: ignore
+          retention-days: 2
