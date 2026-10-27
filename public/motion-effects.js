@@ -28,6 +28,17 @@ if (!reduced.matches && !dataSaver) {
         yPercent: 5, scale: 1.05, ease: 'none',
         scrollTrigger: { trigger: '.cinema-hero', start: 'top top', end: 'bottom top', scrub: .85 },
       });
+      // Gentle motion on the company's material photographs; never on touch.
+      document.querySelectorAll('.maya-photo-section').forEach(section => {
+        const photo = section.querySelector('.maya-photo-stage img');
+        if (!photo) return;
+        gsap.to(photo, {
+          yPercent: 4, scale: 1.09, ease: 'none',
+          scrollTrigger: {
+            trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1.2,
+          },
+        });
+      });
       gsap.to('.maya-feature-panel', {
         y: -18, rotation: -5, ease: 'none',
         scrollTrigger: { trigger: '.axis-feature', start: 'top bottom', end: 'bottom top', scrub: .6 },
