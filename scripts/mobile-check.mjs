@@ -3,7 +3,7 @@ import { chromium } from 'playwright'
 import { mkdir } from 'node:fs/promises'
 
 const site = process.env.TEST_SITE_URL || 'http://127.0.0.1:3000'
-const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] })
+const browser = await chromium.launch({ headless: true, channel: 'chrome', args: ['--no-sandbox'] })
 const widthCases = [360, 390, 430, 768, 1280]
 const root = 'test-screenshots'
 await mkdir(root, { recursive: true })
