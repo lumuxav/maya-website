@@ -99,3 +99,42 @@ test('all brochure services and accurate claims remain',()=>{
   assert.match(html,/data-service="Plasma CNC Designs"/);
   assert.match(html,/id="quote-form"/);
 });
+
+test('phone layout hides desktop nav and prevents horizontal overflow',async()=>{
+  const css=await read('public/axis.css');
+  assert.match(css, /\.site-header \.desktop-nav,[\s\S]*?\.site-header \.nav-cta\{display:none!important\}/);
+  assert.match(css, /\.site-header \.menu-button\{display:flex!important/);
+  assert.match(css, /\.mobile-menu\[hidden\]\{display:none!important\}/);
+  assert.match(css, /@media\(max-width:700px\)/);
+  assert.match(css, /overflow-x:clip/);
+  assert.match(html, /name="viewport" content="width=device-width, initial-scale=1"/);
+  assert.match(html, /class="mobile-whatsapp"/);
+});
+
+test('customer WhatsApp orders use the correct number and work without optional scripts',async()=>{
+  const count=(html.match(/class="axis-service-order"/g)||[]).length;
+  assert.equal(count,6,'All six services must link to their individual WhatsApp order messages');
+  assert.match(html,/class="axis-whatsapp-order"[^>]*aria-label="Order by WhatsApp at 0757 742 177"/);
+  assert.match(html,/wa\.me\/256757742177\?text=/);
+  assert.match(html,/Order on WhatsApp/);
+  assert.match(html,/Prefer WhatsApp\? Order directly/);
+  assert.match(js,/\$\$\('img\[data-fallback\]'\)\.forEach/);
+  assert.doesNotMatch(js,/\$\('img\[data-fallback\]'\)\.forEach/);
+});
+
+test('motion libraries are progressive, touch-safe and respect reduced motion',async()=>{
+  const motion=await read('public/motion-effects.js');
+  const css=await read('public/axis.css');
+  assert.match(html,/gsap@3\.15\.0/);
+  assert.match(html,/lenis@1\.3\.27/);
+  assert.match(html,/src="\.\/motion-effects\.js"/);
+  assert.match(motion,/gsap\.registerPlugin\(ScrollTrigger\)/);
+  assert.match(motion,/import\('https:\/\/cdn\.jsdelivr\.net\/npm\/motion@/);
+  assert.match(motion,/import\('https:\/\/cdn\.jsdelivr\.net\/npm\/animejs@/);
+  assert.match(motion,/three@0\.180\.0/);
+  assert.match(motion,/desktop\.matches && finePointer\.matches/);
+  assert.match(motion,/prefers-reduced-motion: reduce/);
+  assert.match(motion,/dataSaver/);
+  assert.match(css,/axis-three-canvas\{display:none!important/);
+  assert.ok((await stat(new URL('../dist/motion-effects.js',import.meta.url))).isFile());
+});
