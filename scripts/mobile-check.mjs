@@ -39,9 +39,9 @@ try {
     assert.equal(await page.locator('.cinema-copy h1').count(),1)
     assert.equal(await page.locator('.cinema-scene-art').getAttribute('src'),'./assets/real/roller-shutter-channels.webp')
     assert.equal(await page.locator('.cinema-feature-art img').count(),2)
-    await page.locator('.cinema-feature-art img').scrollIntoViewIfNeeded()
+    await page.locator('.maya-feature-panel img').scrollIntoViewIfNeeded()
     await page.waitForFunction(() => {
-      const image = document.querySelector('.cinema-feature-art img')
+      const image = document.querySelector('.maya-feature-panel img')
       return image && image.complete && image.naturalWidth > 0
     }, null, { timeout: 10000 })
     assert.equal(await page.locator('.maya-feature-panel img').getAttribute('src'),'./assets/real/cnc-pattern-panel.webp')
