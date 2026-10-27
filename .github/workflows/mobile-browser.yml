@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install browser testing tools
+      - name: Use preinstalled Chrome with Playwright
         run: |
           npm install --no-save --ignore-scripts playwright@1.56.1
-          npx playwright install --with-deps chromium
+          google-chrome --version
       - name: Start static site
         run: |
           npm run dev > /tmp/maya-server.log 2>&1 &
