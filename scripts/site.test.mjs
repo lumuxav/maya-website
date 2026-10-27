@@ -119,7 +119,7 @@ test('customer WhatsApp orders use the correct number and work without optional 
   assert.match(html,/Order on WhatsApp/);
   assert.match(html,/Prefer WhatsApp\? Order directly/);
   assert.match(js,/\$\$\('img\[data-fallback\]'\)\.forEach/);
-  assert.doesNotMatch(js,/\$\('img\[data-fallback\]'\)\.forEach/);
+  assert.doesNotMatch(js,/^\\s+\\$\\('img\\[data-fallback\\]'\\)\\.forEach/m);
 });
 
 test('motion libraries are progressive, touch-safe and respect reduced motion',async()=>{
