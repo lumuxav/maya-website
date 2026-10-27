@@ -38,8 +38,11 @@ try {
     assert.ok(artwork.loaded, '3D hero artwork failed to load at '+width)
     assert.equal(await page.locator('.cinema-copy h1').count(),1)
     assert.equal(await page.locator('.cinema-feature-art img').count(),1)
-    assert.ok(await page.locator('.cinema-feature-art img').evaluate(image => image.complete && image.naturalWidth>0),
-      'Dimensional orange section emblem failed at '+width)
+    await page.locator('.cinema-feature-art img').scrollIntoViewIfNeeded()
+    await page.waitForFunction(() => {
+      const image = document.querySelector('.cinema-feature-art img')
+      return image && image.complete && image.naturalWidth > 0
+    }, null, { timeout: 10000 })
     const servicesBeforeCompany = await page.evaluate(() =>
       document.querySelector('#services').compareDocumentPosition(document.querySelector('#about')) &
       Node.DOCUMENT_POSITION_FOLLOWING)
