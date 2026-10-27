@@ -225,3 +225,128 @@ body{background:#0b0c0e;color:var(--premium-paper);overflow-x:clip}
 .cinema-copy>.axis-whatsapp-order>span{color:#fe7251;font-size:16px}
 .cinema-copy>.cinema-proof{margin-top:48px}
 @media(max-width:430px){.cinema-copy>.cinema-proof{margin-top:33px}}
+
+/* 27 Oct: approved company imagery replaces illustrative steel render and generic gear.
+   Original Maya Steel Works photos from the client's ZIP, not mock-ups. */
+.cinema-hero{background:#080b0e}
+.cinema-scene.maya-real-hero{isolation:isolate}
+.maya-real-hero .cinema-scene-art{
+  width:68%;right:-1%;top:-3%;height:106%;object-fit:cover;object-position:53% 42%;
+  filter:contrast(1.17) saturate(.68) brightness(.83);transform:scale(1.025);
+}
+.maya-real-hero:before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(108deg,#10131830,transparent 41%,#ff6a3217 78%,transparent 94%);
+  mix-blend-mode:screen}
+.maya-real-hero:after{content:'';position:absolute;width:62%;height:58%;right:-16%;bottom:-30%;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse,#fa673321,transparent 70%)}
+.maya-real-hero .cinema-scene-shade{
+  background:
+  linear-gradient(90deg,#0b0d10 0%,#0b0d10fb 19%,#0b0d10e8 34%,#0b0d10a8 48%,#0b0d103d 64%,#0b0d1016 83%),
+  linear-gradient(0deg,#0b0c0ed9 0%,transparent 31%,transparent 74%,#090a0b30 100%);
+}
+.maya-hero-sample{position:absolute;z-index:2;right:3.8%;bottom:111px;width:191px;height:172px;
+  background:#121518;box-shadow:0 19px 54px #010102ab;transform:rotate(3deg);
+  border:1px solid #b3bdc15c;overflow:hidden;border-radius:2px}
+.maya-hero-sample>img{width:100%;height:100%;object-fit:cover;object-position:52% 57%;
+  filter:saturate(.57) contrast(1.15) brightness(.88)}
+.maya-hero-sample:after{content:'';position:absolute;inset:0;
+  background:linear-gradient(0deg,#0b0e12e8,transparent 60%);pointer-events:none}
+.maya-hero-sample-label{position:absolute;left:13px;bottom:14px;z-index:1;color:#e8ecea;
+  font:750 9px/1.45 var(--body);letter-spacing:.01em;text-shadow:0 1px 3px #000}
+.maya-hero-sample-label b{display:block;font:850 9px var(--body);color:#fb6f4b;letter-spacing:.14em;margin-bottom:5px}
+.maya-hero-measure{position:absolute;right:2%;top:15%;z-index:2;display:flex;flex-direction:column;align-items:flex-end;
+  gap:7px;padding-right:17px;border-right:2px solid #ff6844;color:#ecf0ee;font:800 9px/1.4 var(--body);
+  letter-spacing:.13em;text-shadow:0 2px 6px #050607a8}
+.maya-hero-measure span:last-child{font-size:9px;letter-spacing:.055em;color:#bcc8c7}
+.cinema-image-note{bottom:81px;color:#b4b9b7;right:20px;font-size:8px}
+.cinema-copy{width:min(720px,62%)}
+.cinema-copy h1{max-width:720px}
+.cinema-lead{max-width:505px}
+/* Orange enquiry feature: a company's real ornamental CNC-cut plate, framed
+   like a premium product photograph, backed by a detail of its own metal lettering. */
+.maya-real-feature{position:relative;isolation:isolate;min-height:550px;display:block;overflow:visible}
+.maya-real-feature:before{content:'';position:absolute;inset:-8% -15% -12% 0;background:
+  radial-gradient(ellipse at 49% 45%,#ffc3966c,transparent 53%);
+  pointer-events:none;z-index:-1}
+.maya-feature-backdrop{position:absolute;top:12%;bottom:11%;left:15%;right:6%;border:1px solid #ffe8df70;
+  background:linear-gradient(135deg,#ffb08020,#9c1d0b4d);
+  box-shadow:32px 37px 75px #7b250f55;transform:skewY(-8deg) rotate(3deg)}
+.maya-feature-panel{position:absolute;z-index:3;top:4%;left:27%;width:46%;max-width:325px;height:93%;
+  margin:0;border:5px solid #f1c3a2a3;border-radius:4px;overflow:hidden;background:#41403c;
+  transform:rotate(-8deg) skewY(-2deg);
+  box-shadow:19px 20px 0 #9e2f1d,32px 45px 49px #631909a6,0 0 0 1px #d7d6ca;
+  transition:transform .65s cubic-bezier(.2,.72,.16,1)}
+.maya-feature-panel:hover{transform:translateY(-9px) rotate(-6deg) skewY(-2deg)}
+.maya-feature-panel>img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;
+  object-position:52% 48%;filter:contrast(1.14) saturate(.7) brightness(.93);
+  transform:none;box-shadow:none;border:0}
+.maya-feature-panel:after{content:'';position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(0deg,#101417ed,transparent 32%,transparent 73%,#10141744)}
+.maya-feature-panel figcaption{position:absolute;bottom:17px;left:17px;right:17px;z-index:2;color:#f6f2eb;text-shadow:0 2px 7px #0008}
+.maya-feature-panel figcaption span{display:block;font:800 9px var(--body);letter-spacing:.14em;color:#ffae85;margin-bottom:10px}
+.maya-feature-panel figcaption strong{display:block;font:700 22px/1.05 var(--display);letter-spacing:-.055em}
+.maya-feature-panel figcaption small{display:block;color:#d0d7d6;margin-top:8px;font:650 9px var(--body)}
+.maya-feature-cutout{position:absolute;z-index:2;right:1%;bottom:7%;width:32%;max-width:205px;height:48%;
+  overflow:hidden;border:1px solid #f1e5dfb1;background:#2d3031;transform:rotate(9deg);
+  box-shadow:17px 21px 30px #7a2411a8}
+.maya-feature-cutout>img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 51%;
+  filter:saturate(.6) contrast(1.13);transform:none;border:0;box-shadow:none}
+.maya-feature-cutout:after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(0deg,#0b0e11cc,transparent 55%)}
+.maya-feature-cutout span{position:absolute;bottom:11px;left:10px;right:8px;z-index:1;
+  color:#f0f1ed;font:800 8px/1.4 var(--body);letter-spacing:.065em}
+.maya-feature-technical{position:absolute;z-index:4;left:1%;top:19%;display:flex;flex-direction:column;gap:8px;
+  border-left:2px solid #ffe2d2;padding-left:12px;color:#fff7ee;
+  font:790 10px/1.5 var(--body);letter-spacing:.14em}
+.maya-feature-technical span:last-child{color:#ffd5c6;font-size:9px;letter-spacing:.1em}
+.maya-real-feature .cinema-feature-shadow{display:none}
+@media(max-width:1150px){
+ .maya-feature-panel{left:20%;width:55%;height:84%;top:9%}
+ .maya-feature-cutout{right:-1%;width:32%}
+ .maya-hero-sample{width:162px;height:148px;bottom:110px}
+}
+@media(max-width:900px){
+ .maya-real-hero .cinema-scene-art{width:83%;right:-9%;height:103%;top:-2%;object-position:52% center;
+   filter:brightness(.67) saturate(.57) contrast(1.18)}
+ .maya-real-hero .cinema-scene-shade{background:linear-gradient(90deg,#090a0df9 0%,#090a0de7 30%,#090a0d8e 55%,#090a0d20 100%),
+   linear-gradient(0deg,#090a0de8 0%,transparent 35%)}
+ .maya-hero-sample{display:none}
+ .maya-hero-measure{right:3%;top:13%}
+ .maya-real-feature{min-height:470px}
+ .maya-feature-panel{width:57%;left:15%;height:85%;top:11%}
+ .maya-feature-cutout{width:36%;height:44%;right:0}
+}
+@media(max-width:700px){
+ .maya-real-hero .cinema-scene-art{inset:0;width:100%;height:100%;object-fit:cover;
+   object-position:59% center;filter:brightness(.46) saturate(.62) contrast(1.18)}
+ .maya-real-hero .cinema-scene-shade{background:
+   linear-gradient(90deg,#0a0c0ef0 0%,#0a0c0ec5 47%,#0a0c0e7b 100%),
+   linear-gradient(0deg,#0a0c0efa 0%,transparent 39%,#0a0c0e8d 100%)}
+ .maya-hero-measure{display:none}
+ .cinema-copy{width:100%}
+ .cinema-lead{max-width:38ch}
+ .cinema-image-note{font-size:7px;right:15px;bottom:65px;max-width:70%;text-align:right}
+ .maya-real-feature{height:405px;min-height:380px;width:100%;overflow:hidden}
+ .maya-real-feature .maya-feature-backdrop{top:10%;bottom:7%;left:14%;right:10%}
+ .maya-real-feature .maya-feature-panel{top:4%;left:23%;width:48%;height:84%;max-width:none;
+   transform:rotate(-7deg);border-width:4px}
+ .maya-real-feature .maya-feature-panel:hover{transform:rotate(-7deg)}
+ .maya-feature-panel figcaption strong{font-size:19px}
+ .maya-feature-panel figcaption{bottom:12px;left:11px}
+ .maya-real-feature .maya-feature-cutout{width:30%;height:41%;right:4%;bottom:7%}
+ .maya-feature-technical{left:1%;top:14%;font-size:8px}
+ .maya-feature-technical span:last-child{font-size:7px}
+}
+@media(max-width:430px){
+ .maya-real-feature{height:345px;min-height:345px}
+ .maya-real-feature .maya-feature-panel{left:24%;width:52%;height:86%}
+ .maya-feature-panel figcaption strong{font-size:16px}
+ .maya-feature-panel figcaption span{font-size:8px}
+ .maya-feature-panel figcaption small{font-size:7px}
+ .maya-real-feature .maya-feature-cutout{width:31%;height:40%;right:0}
+ .maya-feature-technical{left:0;top:12%;max-width:135px}
+}
+@media(prefers-reduced-motion:reduce){
+ .maya-feature-panel{transition:none!important}
+ .maya-feature-panel:hover{transform:rotate(-8deg) skewY(-2deg)}
+}
