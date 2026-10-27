@@ -407,3 +407,10 @@ html.lenis,html.lenis body{height:auto}
 @media(prefers-reduced-motion:reduce){
  .motion-accent,.axis-whatsapp-order{animation:none!important;transition:none!important}
 }
+
+/* Optional desktop Three.js accent; the original workshop photo remains visible. */
+.axis-three-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:.8;mix-blend-mode:screen}
+.axis-hero-visual>.axis-visual-caption{z-index:4}
+@media(max-width:900px){.axis-three-canvas{display:none!important}}
+/* No animation is required for content or navigation to become usable. */
+@media(prefers-reduced-motion:reduce){.axis-three-canvas{display:none!important}}
