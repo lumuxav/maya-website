@@ -13,8 +13,9 @@
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./refresh.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Maya Steel Works","description":"Metal cutting and pressing services, roller shutter channels, kibaati plates, louvers, sliding door channels and plasma CNC design.","telephone":"+256757742177","address":{"@type":"PostalAddress","addressLocality":"Maya","addressRegion":"Wakiso District","addressCountry":"UG"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"}],"areaServed":"Wakiso, Uganda"}
 </script>
@@ -29,37 +30,53 @@
    <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 50 50" fill="none"><path d="M6 37V13h7l12 15 12-15h7v24h-7V23L25 38 13 23v14Z" fill="currentColor"/><path d="M33 6h11v3H33Z" fill="#E77937"/></svg></span>
    <span class="brand-word"><strong>MAYA <em>STEEL</em></strong><small>WORKS / WAKISO</small></span>
   </a>
-  <nav class="desktop-nav" aria-label="Primary navigation"><a href="#about">About</a><a href="#services">Our services</a><a href="#work">Metalworks</a><a href="#process">How it works</a><a href="#contact">Contact</a></nav>
-  <a class="nav-cta" href="#quote">GET A QUOTE <span aria-hidden="true">↗</span></a>
+  <nav class="desktop-nav" aria-label="Primary navigation"><a href="#about">About</a><a href="#services">Services</a><a href="#work">Projects & materials</a><a href="#process">How it works</a><a href="#contact">Contact</a></nav>
+  <a class="nav-cta" href="#quote">Start a project <span aria-hidden="true">↗</span></a>
   <button class="menu-button" type="button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
  </div>
  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#about">About</a><a href="#services">Our services</a><a href="#work">Metalworks</a><a href="#process">How it works</a><a href="#contact">Contact</a><a href="#quote" class="mobile-quote">Get a free quote ↗</a></nav>
 </header>
 <main id="main">
-<section class="hero" id="top" aria-labelledby="hero-title">
- <div class="hero-image" aria-hidden="true"></div>
- <div class="hero-lines" aria-hidden="true"></div>
- <div class="container hero-body">
-  <div class="hero-copy">
-   <div class="eyebrow eyebrow-light"><span class="orange-dash"></span> MADE TO MEASURE. BUILT TO LAST.</div>
-   <h1 id="hero-title">STRENGTH<br>IN EVERY<br><span>CUT.</span></h1>
-   <p class="hero-lead">Precision steel cutting, pressing and custom metalwork for the projects you build — right here in Maya, Wakiso.</p>
-   <div class="hero-actions"><a href="#services" class="button button-accent">EXPLORE OUR SERVICES <span aria-hidden="true">↗</span></a><a href="#quote" class="text-link text-link-light">REQUEST A FREE QUOTE <span aria-hidden="true">↗</span></a></div>
+<section class="hero hero-v2" id="top" aria-labelledby="hero-title">
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="container hero-v2-grid">
+    <div class="hero-v2-copy">
+      <div class="hero-kicker"><span class="kicker-line"></span> MAYA, WAKISO · UGANDA <span class="kicker-bullet">✦</span> METAL FABRICATION</div>
+      <h1 id="hero-title">METALWORK<br>MADE <span>PRECISE<span class="hero-period">.</span></span></h1>
+      <p class="hero-v2-lead">From a single steel strip to a custom-cut component, we shape the details that bring your project together.</p>
+      <div class="hero-v2-buttons">
+        <a href="#quote" class="button button-accent hero-main-button">LET'S DISCUSS YOUR PROJECT <span aria-hidden="true">↗</span></a>
+        <a href="#services" class="button button-glass">Explore services <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-v2-proof">
+        <span class="proof-marker">MS<span>W</span></span>
+        <span>PRECISION CUTTING <i></i> CUSTOM DIMENSIONS <i></i> PRACTICAL STEEL SOLUTIONS</span>
+      </div>
+    </div>
+    <div class="hero-v2-media">
+      <div class="hero-v2-photo">
+        <img src="https://images.unsplash.com/photo-1564183063457-680b3759a5bd?auto=format&fit=crop&w=1600&q=85" alt="Representative industrial cutting machinery and metal fabrication" fetchpriority="high" decoding="async">
+      </div>
+      <span class="media-cross media-cross-top" aria-hidden="true">+</span><span class="media-cross media-cross-bottom" aria-hidden="true">+</span>
+      <div class="hero-media-badge"><span>01 / 06</span><strong>PRECISION<br>IS THE POINT.</strong><span>BUILT TO YOUR SPECIFICATION ↗</span></div>
+      <div class="hero-media-side">STEEL / FORM / FUNCTION <span>2026</span></div>
+      <span class="media-photo-note">Representative industrial photography · Not the Maya workshop</span>
+    </div>
   </div>
-  <div class="hero-index" aria-hidden="true"><span>01 / 06</span><i></i><span>PRECISION METAL SOLUTIONS</span></div>
- </div>
- <div class="hero-bottom"><div class="container hero-bottom-inner"><span>01 <b>STEEL CUTTING & PRESSING</b></span><span>02 <b>MADE TO YOUR DIMENSIONS</b></span><span>03 <b>MAYA, WAKISO — UGANDA</b></span><a href="#about" aria-label="Scroll to about us">SCROLL DOWN <span aria-hidden="true">↓</span></a></div></div>
- <span class="hero-photo-credit">Illustrative metalworking photograph — not the Maya workshop.</span>
+  <div class="hero-v2-bottom"><div class="container hero-v2-bottom-inner">
+    <div><span class="hero-bottom-dot"></span><strong>STEEL CUTTING</strong> <span>/</span> <strong>PRESSING</strong> <span>/</span> <strong>MADE-TO-MEASURE PROFILES</strong></div>
+    <a href="#about">SCROLL TO EXPLORE <span aria-hidden="true">↘</span></a>
+  </div></div>
 </section>
 <section class="intro section" id="about">
  <div class="container intro-grid">
   <div class="section-aside reveal"><span class="section-tag">01 / WHO WE ARE</span><div class="tiny-star" aria-hidden="true">✳</div></div>
   <div class="intro-content reveal"><p class="mini-label">PRECISION. STRENGTH. PURPOSE.</p><h2 class="heading">STEEL MADE<br>TO <em>WORK HARDER.</em></h2><div class="intro-bottom"><p>At Maya Steel Works, we cut, press and shape metal to fit your job. From reinforced plates and sliding channels to decorative CNC patterns, we help turn your measurements and ideas into practical steel solutions.</p><a class="round-arrow" href="#services" aria-label="Discover our services">↗</a></div></div>
  </div>
-</section>
+<div class="intro-precision-art" aria-hidden="true"><span class="art-track art-track-a"></span><span class="art-track art-track-b"></span><span class="art-cut">01<span>/</span>06</span><span class="art-label">DESIGNED TO YOUR DIMENSIONS</span></div></section>
 <section class="services section dark-section" id="services">
  <div class="container">
-  <div class="section-head reveal"><div><span class="section-tag section-tag-dark">02 / WHAT WE DO</span><h2 class="heading">OUR CORE<br><em>SERVICES.</em></h2></div><p>Built around your requirements, not one-size-fits-all measurements. Choose a service to request pricing and discuss your specifications.</p></div>
+  <div class="section-head reveal"><div><span class="section-tag section-tag-dark">02 / WHAT WE DO</span><h2 class="heading">WHAT WE<br><em>DO BEST.</em></h2></div><p>Built around your requirements, not one-size-fits-all measurements. Choose a service to request pricing and discuss your specifications.</p></div>
   <div class="services-grid">
    <article class="service-card reveal"><div class="service-top"><span>01 — 06</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 17h46M9 26h46M9 35h46M9 44h46M17 14v33M32 14v33M47 14v33"/></svg></div><h3>PRESSED<br>RIBBED PLATES</h3><p>Reinforced steel plates for trench covers, industrial flooring, walkways, drainage and structural applications.</p><div class="service-foot"><span>Custom lengths & widths</span><button data-service="Pressed Ribbed Plates" class="service-button" type="button" aria-label="Get quote for pressed ribbed plates">↗</button></div></article>
    <article class="service-card reveal"><div class="service-top"><span>02 — 06</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 10v43h42V10M19 18h26v27H19zM21 23h22M21 30h22M21 37h22"/></svg></div><h3>ROLLER SHUTTER<br>CHANNELS</h3><p>Precision-pressed guides and channels for shopfront, warehouse and security roller shutters.</p><div class="service-foot"><span>Various sizes & thicknesses</span><button data-service="Roller Shutter Channels" class="service-button" type="button" aria-label="Get quote for roller shutter channels">↗</button></div></article>
@@ -73,7 +90,7 @@
 <section class="visual-statement" aria-label="Precision metal fabrication"><div class="visual-img" aria-hidden="true"></div><div class="container visual-inner"><span class="eyebrow eyebrow-light"><span class="orange-dash"></span> ENGINEERED AROUND YOUR IDEAS</span><p>YOUR MEASUREMENTS.<br><em>OUR PRECISION.</em></p><a class="button button-outline" href="#quote">LET'S TALK ABOUT YOUR PROJECT ↗</a></div><small class="visual-credit">Illustrative industrial photography</small></section>
 <section class="showcase section" id="work">
  <div class="container">
-  <div class="section-head showcase-head reveal"><div><span class="section-tag">03 / MATERIAL & APPLICATIONS</span><h2 class="heading">THE WORK<br><em>BEHIND THE WORK.</em></h2></div><p>Explore the types of metalwork we can discuss for your project. Images are illustrative material references, not a portfolio of completed Maya Steel Works jobs.</p></div>
+  <div class="section-head showcase-head reveal"><div><span class="section-tag">03 / MATERIAL & APPLICATIONS</span><h2 class="heading">MATERIALS.<br><em>POSSIBILITIES.</em></h2></div><p>Explore the types of metalwork we can discuss for your project. Images are illustrative material references, not a portfolio of completed Maya Steel Works jobs.</p></div>
   <div class="filter-row" role="group" aria-label="Filter examples"><button class="filter active" data-filter="all" type="button" aria-pressed="true">ALL EXAMPLES <sup>06</sup></button><button class="filter" data-filter="pressing" type="button" aria-pressed="false">PRESSING</button><button class="filter" data-filter="channels" type="button" aria-pressed="false">CHANNELS</button><button class="filter" data-filter="cnc" type="button" aria-pressed="false">CNC CUTTING</button></div>
   <div class="gallery">
    <button class="gallery-item reveal" type="button" data-category="pressing" data-title="Pressed steel plates" data-service="Pressed Ribbed Plates" data-img="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1200&auto=format&fit=crop&q=82"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&auto=format&fit=crop&q=80" alt="Industrial metallic material reference" loading="lazy"><span class="gallery-caption"><span><small>01 / PRESSING</small><strong>PRESSED STEEL PLATES</strong></span><span class="gallery-action">↗</span></span></button>
@@ -86,7 +103,7 @@
   <p class="gallery-disclaimer">Images shown are illustrative stock references. Ask us directly about your intended design and available materials.</p>
  </div>
 </section>
-<section class="process section" id="process"><div class="container"><div class="section-head reveal"><div><span class="section-tag">04 / HOW TO START</span><h2 class="heading">FROM IDEA<br><em>TO METAL.</em></h2></div><p>It starts with a simple conversation. Share what you're building; we'll help you discuss the best fit for your project.</p></div><div class="process-grid"><article class="process-step reveal"><span>01</span><i aria-hidden="true">↗</i><h3>TELL US WHAT YOU NEED</h3><p>Choose the service you need and describe the type of part, material or design.</p></article><article class="process-step reveal"><span>02</span><i aria-hidden="true">↗</i><h3>SHARE YOUR DIMENSIONS</h3><p>Provide your measurements, quantity and any reference photo or drawing.</p></article><article class="process-step reveal"><span>03</span><i aria-hidden="true">↗</i><h3>GET YOUR QUOTATION</h3><p>Contact our team on WhatsApp to confirm pricing and discuss the next steps.</p></article></div></div></section>
+<section class="process section" id="process"><div class="container"><div class="section-head reveal"><div><span class="section-tag">04 / HOW TO START</span><h2 class="heading">FROM YOUR IDEA<br><em>TO THE CUT.</em></h2></div><p>It starts with a simple conversation. Share what you're building; we'll help you discuss the best fit for your project.</p></div><div class="process-grid"><article class="process-step reveal"><span>01</span><i aria-hidden="true">↗</i><h3>TELL US WHAT YOU NEED</h3><p>Choose the service you need and describe the type of part, material or design.</p></article><article class="process-step reveal"><span>02</span><i aria-hidden="true">↗</i><h3>SHARE YOUR DIMENSIONS</h3><p>Provide your measurements, quantity and any reference photo or drawing.</p></article><article class="process-step reveal"><span>03</span><i aria-hidden="true">↗</i><h3>GET YOUR QUOTATION</h3><p>Contact our team on WhatsApp to confirm pricing and discuss the next steps.</p></article></div></div></section>
 <section class="quote-section section" id="quote"><div class="container quote-layout"><div class="quote-info reveal"><span class="section-tag section-tag-dark">05 / START A PROJECT</span><h2 class="heading">LET'S MAKE<br>IT <em>HAPPEN.</em></h2><p>Custom sizes? A special pattern? A job that's hard to explain? Tell us a little about it, review your request and send it to us via WhatsApp.</p><div class="quote-prompt"><span class="quote-prompt-icon">◎</span><span><strong>FREE QUOTATIONS</strong><small>Prices are negotiable — we work within your budget.</small></span></div><p class="privacy-note">Your message is not submitted automatically. You'll review it before opening WhatsApp.</p></div>
 <form id="quote-form" class="quote-form reveal">
  <div class="form-title"><span>PROJECT ENQUIRY</span><span>01 — 04</span></div>
