@@ -202,7 +202,7 @@ test('three editorial background photos come from Maya Steel Works supplied mate
   assert.ok((await stat(new URL('../dist/photo-sections.css',import.meta.url))).isFile());
 });
 
-test('photo treatment does not replace the site ordering or real work gallery',()=>{
+test('photo treatment does not replace the site ordering or real work gallery',async()=>{
   assert.equal((html.match(/class="service-card reveal"/g)||[]).length,6);
   assert.equal((html.match(/class="gallery-item reveal"/g)||[]).length,6);
   assert.match(html,/class="maya-feature-panel"/);
