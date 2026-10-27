@@ -64,24 +64,24 @@ test('built files are ready for static hosting', async () => {
   assert.equal(config.buildCommand,'npm run build');
 });
 
-test('the site uses supplied company photos, correct monogram and the dark/orange theme',async()=>{
+test('the site uses actual company photos, correct monogram and dark orange theme',async()=>{
   const axis=await read('public/axis.css');
   assert.match(html,/class="hero hero-v2 axis-hero"/);
   assert.match(html,/href="\.\/axis\.css"/);
   assert.match(html,/id="feature-heading"/);
   assert.match(axis,/axis-feature/);
+  assert.match(axis,/axis-material-notes/);
   assert.match(axis,/max-width:700px/);
   assert.match(axis,/prefers-reduced-motion/);
   const names=['ribbed-steel-plates','roller-shutter-channels','workshop-steel-strips',
     'metal-louvers','sliding-channels','cnc-pattern-panel','cnc-lettering','profile-structure'];
   for(const name of names){
-    const file='assets/real/'+name+'.svg';
-    const asset=await read('public/'+file);
-    assert.match(asset,/<image width="\d+" height="\d+" href="data:image\/webp;base64,/);
+    const file='assets/real/'+name+'.webp';
+    const binary=await readFile(new URL('../public/'+file,import.meta.url));
+    assert.equal(binary.toString('ascii',0,4),'RIFF','Invalid WebP photo: '+file);
+    assert.equal(binary.toString('ascii',8,12),'WEBP','Invalid WebP photo: '+file);
     assert.ok((await stat(new URL('../dist/'+file,import.meta.url))).isFile(),'Missing '+file);
-  }
-  for(const name of names.slice(0,6)){
-    assert.match(html,new RegExp('src="\\.\\/assets\\/real\\/'+name+'\\.svg"'));
+    assert.ok(html.includes('./assets/real/'+name+'.webp'),'Photo absent from page: '+name);
   }
   const logo=await read('public/assets/maya-steel-logo.svg');
   assert.match(logo,/Maya Steel Works/);
@@ -89,11 +89,13 @@ test('the site uses supplied company photos, correct monogram and the dark/orang
   assert.ok((await stat(new URL('../dist/assets/maya-steel-logo.svg',import.meta.url))).isFile());
   assert.ok((await stat(new URL('../dist/axis.css',import.meta.url))).isFile());
   assert.doesNotMatch(html,/images\.unsplash\.com/);
+  assert.doesNotMatch(html,/assets\/real\/[\w-]+\.svg/);
 });
 
-test('visitors still see the six brochure-listed services and honest company claims',()=>{
+test('all brochure services and accurate claims remain',()=>{
   assert.match(html,/Prices negotiable/);
   assert.match(html,/Maya.*Wakiso/);
   assert.doesNotMatch(html,/ISO 9001|24\/7 Production|Projects Completed|Years Experience/i);
   assert.match(html,/data-service="Plasma CNC Designs"/);
+  assert.match(html,/id="quote-form"/);
 });
